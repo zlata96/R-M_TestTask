@@ -8,18 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		CE501EE22A93670900F705C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EE12A93670900F705C1 /* AppDelegate.swift */; };
-		CE501EE62A93670900F705C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EE52A93670900F705C1 /* ViewController.swift */; };
+		CE501EE62A93670900F705C1 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EE52A93670900F705C1 /* CharactersViewController.swift */; };
 		CE501EEB2A93671000F705C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE501EEA2A93671000F705C1 /* Assets.xcassets */; };
 		CE501EEE2A93671000F705C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE501EEC2A93671000F705C1 /* LaunchScreen.storyboard */; };
+		CE501EF82A9370B500F705C1 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EF72A9370B500F705C1 /* CharactersView.swift */; };
+		CE501EFA2A93714F00F705C1 /* CharacterCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EF92A93714F00F705C1 /* CharacterCardViewCell.swift */; };
+		CE501EFC2A93723F00F705C1 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501EFB2A93723F00F705C1 /* UIFont+Extension.swift */; };
+		CE501EFE2A9372B200F705C1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE501EFD2A9372B200F705C1 /* Colors.xcassets */; };
+		CE501F012A9372FD00F705C1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F002A9372FD00F705C1 /* UIColor+Extension.swift */; };
+		CE501F032A93735900F705C1 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F022A93735900F705C1 /* UICollectionView+Extension.swift */; };
+		CE501F052A937CC100F705C1 /* CharacterSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F042A937CC100F705C1 /* CharacterSectionHeader.swift */; };
+		CE501F072A9383FB00F705C1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F062A9383FB00F705C1 /* CustomNavigationController.swift */; };
+		CE501F0A2A93898500F705C1 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F092A93898500F705C1 /* CharacterModel.swift */; };
+		CE501F0D2A938AEE00F705C1 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F0C2A938AEE00F705C1 /* APIRequest.swift */; };
+		CE501F0F2A938B0400F705C1 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F0E2A938B0400F705C1 /* APIEndpoint.swift */; };
+		CE501F112A938B1600F705C1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE501F102A938B1600F705C1 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE501EDE2A93670900F705C1 /* R&M_TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "R&M_TestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE501EE12A93670900F705C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE501EE52A93670900F705C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE501EE52A93670900F705C1 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		CE501EEA2A93671000F705C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE501EED2A93671000F705C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE501EEF2A93671000F705C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE501EF72A9370B500F705C1 /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
+		CE501EF92A93714F00F705C1 /* CharacterCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardViewCell.swift; sourceTree = "<group>"; };
+		CE501EFB2A93723F00F705C1 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		CE501EFD2A9372B200F705C1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		CE501F002A9372FD00F705C1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE501F022A93735900F705C1 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		CE501F042A937CC100F705C1 /* CharacterSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSectionHeader.swift; sourceTree = "<group>"; };
+		CE501F062A9383FB00F705C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		CE501F092A93898500F705C1 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		CE501F0C2A938AEE00F705C1 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		CE501F0E2A938B0400F705C1 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		CE501F102A938B1600F705C1 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +77,48 @@
 			isa = PBXGroup;
 			children = (
 				CE501EE12A93670900F705C1 /* AppDelegate.swift */,
-				CE501EE52A93670900F705C1 /* ViewController.swift */,
+				CE501EE52A93670900F705C1 /* CharactersViewController.swift */,
+				CE501EF72A9370B500F705C1 /* CharactersView.swift */,
+				CE501EF92A93714F00F705C1 /* CharacterCardViewCell.swift */,
+				CE501F042A937CC100F705C1 /* CharacterSectionHeader.swift */,
+				CE501F062A9383FB00F705C1 /* CustomNavigationController.swift */,
+				CE501F0B2A938ADC00F705C1 /* APIClient */,
+				CE501F082A93897100F705C1 /* Models */,
+				CE501EFF2A9372E000F705C1 /* Extensions */,
 				CE501EEA2A93671000F705C1 /* Assets.xcassets */,
+				CE501EFD2A9372B200F705C1 /* Colors.xcassets */,
 				CE501EEC2A93671000F705C1 /* LaunchScreen.storyboard */,
 				CE501EEF2A93671000F705C1 /* Info.plist */,
 			);
 			path = "R&M_TestTask";
+			sourceTree = "<group>";
+		};
+		CE501EFF2A9372E000F705C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE501EFB2A93723F00F705C1 /* UIFont+Extension.swift */,
+				CE501F002A9372FD00F705C1 /* UIColor+Extension.swift */,
+				CE501F022A93735900F705C1 /* UICollectionView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE501F082A93897100F705C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE501F092A93898500F705C1 /* CharacterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE501F0B2A938ADC00F705C1 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				CE501F0C2A938AEE00F705C1 /* APIRequest.swift */,
+				CE501F102A938B1600F705C1 /* APIService.swift */,
+				CE501F0E2A938B0400F705C1 /* APIEndpoint.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE501EFE2A9372B200F705C1 /* Colors.xcassets in Resources */,
 				CE501EEE2A93671000F705C1 /* LaunchScreen.storyboard in Resources */,
 				CE501EEB2A93671000F705C1 /* Assets.xcassets in Resources */,
 			);
@@ -174,8 +235,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE501EE62A93670900F705C1 /* ViewController.swift in Sources */,
+				CE501EE62A93670900F705C1 /* CharactersViewController.swift in Sources */,
+				CE501F0A2A93898500F705C1 /* CharacterModel.swift in Sources */,
+				CE501F032A93735900F705C1 /* UICollectionView+Extension.swift in Sources */,
+				CE501F052A937CC100F705C1 /* CharacterSectionHeader.swift in Sources */,
+				CE501F072A9383FB00F705C1 /* CustomNavigationController.swift in Sources */,
 				CE501EE22A93670900F705C1 /* AppDelegate.swift in Sources */,
+				CE501EFA2A93714F00F705C1 /* CharacterCardViewCell.swift in Sources */,
+				CE501F0F2A938B0400F705C1 /* APIEndpoint.swift in Sources */,
+				CE501F0D2A938AEE00F705C1 /* APIRequest.swift in Sources */,
+				CE501F112A938B1600F705C1 /* APIService.swift in Sources */,
+				CE501F012A9372FD00F705C1 /* UIColor+Extension.swift in Sources */,
+				CE501EFC2A93723F00F705C1 /* UIFont+Extension.swift in Sources */,
+				CE501EF82A9370B500F705C1 /* CharactersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
