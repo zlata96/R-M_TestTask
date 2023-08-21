@@ -52,7 +52,9 @@ class TwoLabelsView: UIView {
             leftLabel.topAnchor.constraint(equalTo: topAnchor),
             leftLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             rightLabel.topAnchor.constraint(equalTo: topAnchor),
-            rightLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            rightLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -34,6 +34,10 @@ class CharacterDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = contentView
+        setup()
+    }
+
+    private func setup() {
         setupDelegates()
         setupNavBar()
         fetchData()
@@ -44,30 +48,24 @@ class CharacterDetailsViewController: UIViewController {
     }
 
     private func fetchData() {
-        let episodesIds = getNumberOfEpisodesArray(urls: character.episode)
+        let episodesIds = character.episode.compactMap { $0.components(separatedBy: "/").last }
         let request = NetworkRequest(endPoint: .episode, pathComponents: episodesIds)
         NetworkService.shared.execute(request, expecting: [EpisodeModel].self) { [weak self] result in
             switch result {
             case let .success(model):
                 self?.episodes = model
                 DispatchQueue.main.async {
-                    self?.contentView.charactersCollectionView.reloadSections([DetailsSections.episodes.rawValue])
-                    self?.hideActivityIndicator()
+                    self?.refreshUI()
                 }
             case let .failure(error):
-                print(String(describing: error))
+                print(error)
             }
         }
     }
 
-    private func getNumberOfEpisodesArray(urls: [String]) -> [String] {
-        var episodesIds: [String] = []
-        urls.forEach { urlString in
-            if let lastComponent = urlString.components(separatedBy: "/").last {
-                episodesIds.append(lastComponent)
-            }
-        }
-        return episodesIds
+    private func refreshUI() {
+        contentView.charactersCollectionView.reloadSections([DetailsSections.episodes.rawValue])
+        hideActivityIndicator()
     }
 
     private func hideActivityIndicator() {
@@ -88,7 +86,8 @@ class CharacterDetailsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
 
-    @objc func backButtonPressed() {
+    @objc
+    private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
 }
