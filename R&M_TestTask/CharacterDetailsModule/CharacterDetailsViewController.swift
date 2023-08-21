@@ -8,6 +8,7 @@ import UIKit
 class CharacterDetailsViewController: UIViewController {
     let contentView = CharacterDetailsView()
     var character: CharacterModel
+    var episodes = [EpisodeModel]()
 
     init(characterModel: CharacterModel) {
         character = characterModel
@@ -24,7 +25,7 @@ class CharacterDetailsViewController: UIViewController {
         view = contentView
         setupDelegates()
         setupNavBar()
-        // fetchData()
+        fetchData()
     }
 
     func setupDelegates() {
@@ -42,21 +43,42 @@ class CharacterDetailsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-//    func fetchData() {
-//        let request = APIRequest(endPoint: .character, pathComponents: [String(id)])
-//        APIService.shared.execute(APIRequest.listCharactersRequest,
-//                                  expecting: GetSingleCharacterRequest.self) { [weak self] result in
-//            switch result {
-//            case let .success(model):
-//                self?.character = model.results
-//                DispatchQueue.main.async {
-//                    self?.contentView.charactersCollectionView.reloadData()
-//                }
-//            case let .failure(error):
-//                print(String(describing: error))
-//            }
-//        }
-//    }
+    func fetchData() {
+        let pathComponent = getNumberOfEpisodesArray(urls: character.episode)
+        let request = APIRequest(endPoint: .episode, pathComponents: [pathComponent])
+        APIService.shared.execute(request,
+                                  expecting: [EpisodeModel].self) { [weak self] result in
+            switch result {
+            case let .success(model):
+                self?.episodes = model
+                DispatchQueue.main.async {
+                    self?.contentView.charactersCollectionView.reloadSections([3])
+                    self?.hideActivityIndicator()
+                }
+            case let .failure(error):
+                print(String(describing: error))
+            }
+        }
+    }
+
+    private func getNumberOfEpisodesArray(urls: [String]) -> String {
+        var line = ""
+        urls.forEach { urlString in
+            if let lastComponent = urlString.components(separatedBy: "/").last {
+                if !line.isEmpty {
+                    line.append(",")
+                }
+                line.append(lastComponent)
+            }
+        }
+        return line
+    }
+
+    private func hideActivityIndicator() {
+        contentView.activityIndicator.stopAnimating()
+        contentView.activityIndicator.removeFromSuperview()
+        contentView.charactersCollectionView.isHidden = false
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -70,7 +92,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         case .main, .info, .origin:
             return 1
         case .episodes:
-            return character.episode.count
+            return episodes.count
         }
     }
 
@@ -101,7 +123,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         case .episodes:
             let cell = collectionView.dequeueReusableCell(withClass: EpisodesDetailsViewCell.self,
                                                           for: indexPath)
-            // cell.configure(viewModel: mainCharacter.episode[indexPath.row])
+            cell.configure(viewModel: episodes[indexPath.row])
             return cell
         }
     }

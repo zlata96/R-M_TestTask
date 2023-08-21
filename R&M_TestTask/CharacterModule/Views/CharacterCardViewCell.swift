@@ -53,7 +53,6 @@ class CharacterCardViewCell: UICollectionViewCell {
         layer.cornerRadius = 12
         backgroundColor = .grayBackground
         translatesAutoresizingMaskIntoConstraints = false
-        // activityIndicator.center = center
     }
 
     private func addSubviews() {

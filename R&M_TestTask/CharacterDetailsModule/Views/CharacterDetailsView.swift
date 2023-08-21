@@ -15,6 +15,12 @@ enum DetailsSections: Int, CaseIterable {
 // MARK: - CharacterDetailsView
 
 class CharacterDetailsView: UIView {
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+
     lazy var charactersCollectionView: UICollectionView = {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -49,10 +55,13 @@ class CharacterDetailsView: UIView {
 
     private func setupStyle() {
         backgroundColor = .mainBackground
+        activityIndicator.startAnimating()
+        charactersCollectionView.isHidden = true
     }
 
     private func addSubviews() {
         addSubview(charactersCollectionView)
+        addSubview(activityIndicator)
     }
 
     private func makeConstraints() {
@@ -60,7 +69,10 @@ class CharacterDetailsView: UIView {
             charactersCollectionView.topAnchor.constraint(equalTo: topAnchor),
             charactersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             charactersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27),
-            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

@@ -17,8 +17,8 @@ struct GetAllCharactersRequest: Codable {
     let results: [CharacterModel]
 }
 
-// MARK: - GetSingleCharacterRequest
+// MARK: - GetEpisodesRequest
 
-struct GetSingleCharacterRequest: Codable {
-    let results: CharacterModel
+struct GetEpisodesRequest: Codable {
+    let results: [EpisodeModel]
 }

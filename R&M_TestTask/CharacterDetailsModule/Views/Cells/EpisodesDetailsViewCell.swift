@@ -77,7 +77,7 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
 
             dateCreatedLabel.topAnchor.constraint(equalTo: episodeNameLabel.bottomAnchor, constant: 16),
             dateCreatedLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
-            dateCreatedLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16)
+            dateCreatedLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }
@@ -85,7 +85,26 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
 extension EpisodesDetailsViewCell {
     func configure(viewModel: EpisodeModel) {
         episodeNameLabel.text = viewModel.name
-        episodeDescriptionLabel.text = viewModel.episode
+        episodeDescriptionLabel.text = createEpisodeName(inputText: viewModel.episode)
         dateCreatedLabel.text = viewModel.airDate
+    }
+
+    private func createEpisodeName(inputText: String) -> String {
+        // swiftlint:disable force_try
+        let regex = try! NSRegularExpression(pattern: "S(\\d+)E(\\d+)", options: [])
+        // swiftlint:enable force_try
+
+        if let match = regex.firstMatch(in: inputText, options: [], range: NSRange(location: 0, length: inputText.utf16.count)) {
+            if let seasonRange = Range(match.range(at: 1), in: inputText),
+               let episodeRange = Range(match.range(at: 2), in: inputText)
+            {
+                let seasonNumber = inputText[seasonRange]
+                let episodeNumber = inputText[episodeRange]
+
+                let outputString = "Episode: \(Int(episodeNumber)!), Season: \(Int(seasonNumber)!)"
+                return (outputString)
+            }
+        }
+        return inputText
     }
 }
