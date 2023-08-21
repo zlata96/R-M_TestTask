@@ -39,7 +39,7 @@ class CharacterDetailsViewController: UIViewController {
     }
 
     @objc func backButtonPressed() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
 //    func fetchData() {

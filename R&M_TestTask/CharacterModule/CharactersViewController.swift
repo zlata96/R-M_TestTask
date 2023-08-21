@@ -9,6 +9,11 @@ class CharactersViewController: UIViewController {
     let contentView = CharactersView()
     var characters = [CharacterModel]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view = contentView
