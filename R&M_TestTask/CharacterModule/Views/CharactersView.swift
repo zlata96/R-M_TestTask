@@ -12,6 +12,7 @@ class CharactersView: UIView {
         collectionView.register(cellWithClass: CharacterCardViewCell.self)
         collectionView.backgroundColor = .mainBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
 

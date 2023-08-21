@@ -13,7 +13,6 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.text = "dfaqjfghelruh"
         return label
     }()
 
@@ -24,7 +23,6 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.text = "dfaqjfghelruh"
         return label
     }()
 
@@ -99,12 +97,12 @@ extension EpisodesDetailsViewCell {
             options: [],
             range: NSRange(location: 0, length: inputText.utf16.count)
         ) {
-            if let seasonRange = Range(match.range(at: 1), in: inputText),
-               let episodeRange = Range(match.range(at: 2), in: inputText)
+            if
+                let seasonRange = Range(match.range(at: 1), in: inputText),
+                let episodeRange = Range(match.range(at: 2), in: inputText)
             {
                 let seasonNumber = inputText[seasonRange]
                 let episodeNumber = inputText[episodeRange]
-
                 let outputString = "Episode: \(Int(episodeNumber)!), Season: \(Int(seasonNumber)!)"
                 return (outputString)
             }

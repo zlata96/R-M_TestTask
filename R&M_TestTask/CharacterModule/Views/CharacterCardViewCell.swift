@@ -7,6 +7,7 @@ import UIKit
 
 class CharacterCardViewCell: UICollectionViewCell {
     private let imageManager = ImageManager()
+
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white

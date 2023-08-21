@@ -13,7 +13,6 @@ class OriginDetailsViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.text = "dfaqjfghelruh"
         return label
     }()
 
@@ -24,7 +23,6 @@ class OriginDetailsViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.text = "dfaqjfghelruh"
         return label
     }()
 

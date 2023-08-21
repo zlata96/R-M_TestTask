@@ -16,13 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="qKu-wm-W4Y">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="qKu-wm-W4Y">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qKu-wm-W4Y" secondAttribute="bottom" id="DTa-Yi-bO3"/>
+                            <constraint firstAttribute="trailing" secondItem="qKu-wm-W4Y" secondAttribute="trailing" id="YN0-ka-OxM"/>
+                            <constraint firstItem="qKu-wm-W4Y" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YwF-sf-Ox1"/>
+                            <constraint firstItem="qKu-wm-W4Y" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="j3v-Y1-Hjd"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

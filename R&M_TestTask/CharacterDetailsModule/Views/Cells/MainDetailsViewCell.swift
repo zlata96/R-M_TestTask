@@ -7,6 +7,7 @@ import UIKit
 
 class MainDetailsViewCell: UICollectionViewCell {
     private let imageManager = ImageManager()
+
     private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

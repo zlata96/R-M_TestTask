@@ -103,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				CE501EE12A93670900F705C1 /* AppDelegate.swift */,
-				CE501F062A9383FB00F705C1 /* CustomNavigationController.swift */,
 				CE501F242A93B7BB00F705C1 /* CustomUIElements */,
 				CE501F162A93B03B00F705C1 /* CharacterDetailsModule */,
 				CE501F142A93AC7F00F705C1 /* CharacterModule */,
@@ -191,6 +190,7 @@
 		CE501F242A93B7BB00F705C1 /* CustomUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				CE501F062A9383FB00F705C1 /* CustomNavigationController.swift */,
 				CE501F252A93B7CD00F705C1 /* TwoLabelsView.swift */,
 			);
 			path = CustomUIElements;
@@ -507,7 +507,9 @@
 				INFOPLIST_FILE = "R&M_TestTask/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,7 +538,9 @@
 				INFOPLIST_FILE = "R&M_TestTask/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

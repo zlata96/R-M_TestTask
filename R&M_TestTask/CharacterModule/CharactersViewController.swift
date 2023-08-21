@@ -7,7 +7,7 @@ import UIKit
 
 class CharactersViewController: UIViewController {
     private let contentView = CharactersView()
-    private var characters = [CharacterModel]()
+    private var characters: [CharacterModel] = []
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,11 +28,12 @@ class CharactersViewController: UIViewController {
     }
 
     private func fetchData() {
-        NetworkService.shared.execute(NetworkRequest.listCharactersRequest,
-                                      expecting: GetAllCharactersRequest.self) { [weak self] result in
+        NetworkService.shared.execute(
+            NetworkRequest.listCharactersRequest,
+            expecting: GetAllCharactersRequest.self
+        ) { [weak self] result in
             switch result {
             case let .success(model):
-                print(String(describing: model))
                 self?.characters = model.results
                 DispatchQueue.main.async {
                     self?.contentView.charactersCollectionView.reloadData()

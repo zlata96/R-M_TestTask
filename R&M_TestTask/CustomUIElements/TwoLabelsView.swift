@@ -51,7 +51,6 @@ class TwoLabelsView: UIView {
         NSLayoutConstraint.activate([
             leftLabel.topAnchor.constraint(equalTo: topAnchor),
             leftLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-
             rightLabel.topAnchor.constraint(equalTo: topAnchor),
             rightLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])

@@ -7,8 +7,9 @@ import UIKit
 
 class CharacterDetailsViewController: UIViewController {
     private let contentView = CharacterDetailsView()
+
     private var character: CharacterModel
-    private var episodes = [EpisodeModel]()
+    private var episodes: [EpisodeModel] = []
 
     init(characterModel: CharacterModel) {
         character = characterModel
@@ -33,15 +34,14 @@ class CharacterDetailsViewController: UIViewController {
     }
 
     private func fetchData() {
-        let pathComponent = getNumberOfEpisodesArray(urls: character.episode)
-        let request = NetworkRequest(endPoint: .episode, pathComponents: [pathComponent])
-        NetworkService.shared.execute(request,
-                                      expecting: [EpisodeModel].self) { [weak self] result in
+        let episodesIds = getNumberOfEpisodesArray(urls: character.episode)
+        let request = NetworkRequest(endPoint: .episode, pathComponents: episodesIds)
+        NetworkService.shared.execute(request, expecting: [EpisodeModel].self) { [weak self] result in
             switch result {
             case let .success(model):
                 self?.episodes = model
                 DispatchQueue.main.async {
-                    self?.contentView.charactersCollectionView.reloadSections([3])
+                    self?.contentView.charactersCollectionView.reloadSections([DetailsSections.episodes.rawValue])
                     self?.hideActivityIndicator()
                 }
             case let .failure(error):
@@ -50,17 +50,14 @@ class CharacterDetailsViewController: UIViewController {
         }
     }
 
-    private func getNumberOfEpisodesArray(urls: [String]) -> String {
-        var line = ""
+    private func getNumberOfEpisodesArray(urls: [String]) -> [String] {
+        var episodesIds: [String] = []
         urls.forEach { urlString in
             if let lastComponent = urlString.components(separatedBy: "/").last {
-                if !line.isEmpty {
-                    line.append(",")
-                }
-                line.append(lastComponent)
+                episodesIds.append(lastComponent)
             }
         }
-        return line
+        return episodesIds
     }
 
     private func hideActivityIndicator() {
@@ -90,9 +87,7 @@ class CharacterDetailsViewController: UIViewController {
 
 extension CharacterDetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let section = DetailsSections(rawValue: section) else {
-            return 0
-        }
+        guard let section = DetailsSections(rawValue: section) else { return 0 }
         switch section {
         case .main, .info, .origin:
             return 1
@@ -109,16 +104,17 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let section = DetailsSections(rawValue: indexPath.section) else {
-            return UICollectionViewCell()
-        }
-
+        guard let section = DetailsSections(rawValue: indexPath.section) else { return UICollectionViewCell() }
         switch section {
         case .main:
             let cell = collectionView.dequeueReusableCell(withClass: MainDetailsViewCell.self, for: indexPath)
-            cell.configure(viewModel: MainDetailsViewCellModel(name: character.name,
-                                                               imageURL: URL(string: character.image),
-                                                               lifeStatus: character.status))
+            cell.configure(
+                viewModel: MainDetailsViewCellModel(
+                    name: character.name,
+                    imageURL: URL(string: character.image),
+                    lifeStatus: character.status
+                )
+            )
             return cell
         case .info:
             let cell = collectionView.dequeueReusableCell(withClass: InfoDetailsViewCell.self, for: indexPath)
@@ -129,8 +125,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
             cell.configure(viewModel: character.origin)
             return cell
         case .episodes:
-            let cell = collectionView.dequeueReusableCell(withClass: EpisodesDetailsViewCell.self,
-                                                          for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withClass: EpisodesDetailsViewCell.self, for: indexPath)
             cell.configure(viewModel: episodes[indexPath.row])
             return cell
         }
@@ -142,11 +137,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
         guard let sectionType = DetailsSections(rawValue: indexPath.section) else { return UICollectionReusableView() }
-        let header = collectionView.viewForSupplementary(
-            withClass: SectionHeader.self,
-            for: indexPath
-        )
-
+        let header = collectionView.viewForSupplementary(withClass: SectionHeader.self, for: indexPath)
         switch sectionType {
         case .info:
             header.configure(title: "Info")

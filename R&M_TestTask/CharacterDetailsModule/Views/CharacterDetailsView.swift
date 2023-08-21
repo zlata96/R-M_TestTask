@@ -33,6 +33,7 @@ class CharacterDetailsView: UIView {
             viewWithClass: SectionHeader.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader
         )
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .mainBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -122,7 +123,6 @@ extension CharacterDetailsView {
                 heightDimension: .absolute(height)
             )
         )
-
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1.0),
