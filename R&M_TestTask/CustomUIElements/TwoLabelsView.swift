@@ -6,21 +6,19 @@ import UIKit
 // MARK: - TwoLabelsView
 
 class TwoLabelsView: UIView {
-    let leftLabel: UILabel = {
+    private let leftLabel: UILabel = {
         let label = UILabel()
         label.textColor = .subtitle
         label.font = .text1M
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "dfaqjfghelruh"
         return label
     }()
 
-    let rightLabel: UILabel = {
+    private let rightLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .text1M
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "dfaqjfghelruh"
         return label
     }()
 

@@ -6,7 +6,7 @@ import UIKit
 // MARK: - EpisodesDetailsViewCell
 
 class EpisodesDetailsViewCell: UICollectionViewCell {
-    lazy var episodeNameLabel: UILabel = {
+    private lazy var episodeNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .text1SB
@@ -17,7 +17,7 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
         return label
     }()
 
-    let episodeDescriptionLabel: UILabel = {
+    private lazy var episodeDescriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .accentTitle
         label.font = .text2M
@@ -28,7 +28,7 @@ class EpisodesDetailsViewCell: UICollectionViewCell {
         return label
     }()
 
-    let dateCreatedLabel: UILabel = {
+    private lazy var dateCreatedLabel: UILabel = {
         let label = UILabel()
         label.textColor = .littleTitle
         label.font = .text3M
@@ -94,7 +94,11 @@ extension EpisodesDetailsViewCell {
         let regex = try! NSRegularExpression(pattern: "S(\\d+)E(\\d+)", options: [])
         // swiftlint:enable force_try
 
-        if let match = regex.firstMatch(in: inputText, options: [], range: NSRange(location: 0, length: inputText.utf16.count)) {
+        if let match = regex.firstMatch(
+            in: inputText,
+            options: [],
+            range: NSRange(location: 0, length: inputText.utf16.count)
+        ) {
             if let seasonRange = Range(match.range(at: 1), in: inputText),
                let episodeRange = Range(match.range(at: 2), in: inputText)
             {

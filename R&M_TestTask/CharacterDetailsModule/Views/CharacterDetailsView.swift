@@ -16,7 +16,8 @@ enum DetailsSections: Int, CaseIterable {
 
 class CharacterDetailsView: UIView {
     lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
@@ -78,7 +79,7 @@ class CharacterDetailsView: UIView {
 }
 
 extension CharacterDetailsView {
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         let sections = DetailsSections.allCases
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { [weak self] sectionIndex, _ ->
             NSCollectionLayoutSection? in
@@ -107,22 +108,7 @@ extension CharacterDetailsView {
     }
 
     private func createLayoutWithHeader(height: CGFloat, interGroupSpacing: CGFloat = 0) -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(height)
-            )
-        )
-
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(height)
-            ),
-            subitems: [item]
-        )
-
-        let section = NSCollectionLayoutSection(group: group)
+        let section = createLayoutWithoutHeader(height: height)
         let header = getHeader()
         section.boundarySupplementaryItems = [header]
         section.interGroupSpacing = interGroupSpacing
@@ -155,7 +141,6 @@ extension CharacterDetailsView {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
-        // header.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 0, bottom: -16, trailing: 0)
         return header
     }
 }

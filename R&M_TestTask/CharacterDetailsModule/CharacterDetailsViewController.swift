@@ -6,9 +6,9 @@ import UIKit
 // MARK: - CharacterDetailsViewController
 
 class CharacterDetailsViewController: UIViewController {
-    let contentView = CharacterDetailsView()
-    var character: CharacterModel
-    var episodes = [EpisodeModel]()
+    private let contentView = CharacterDetailsView()
+    private var character: CharacterModel
+    private var episodes = [EpisodeModel]()
 
     init(characterModel: CharacterModel) {
         character = characterModel
@@ -28,26 +28,15 @@ class CharacterDetailsViewController: UIViewController {
         fetchData()
     }
 
-    func setupDelegates() {
+    private func setupDelegates() {
         contentView.charactersCollectionView.dataSource = self
     }
 
-    func setupNavBar() {
-        let icon = UIImage(named: "leftPointer")
-        let leftBarItem = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(backButtonPressed))
-        navigationItem.leftBarButtonItem = leftBarItem
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
-
-    @objc func backButtonPressed() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    func fetchData() {
+    private func fetchData() {
         let pathComponent = getNumberOfEpisodesArray(urls: character.episode)
-        let request = APIRequest(endPoint: .episode, pathComponents: [pathComponent])
-        APIService.shared.execute(request,
-                                  expecting: [EpisodeModel].self) { [weak self] result in
+        let request = NetworkRequest(endPoint: .episode, pathComponents: [pathComponent])
+        NetworkService.shared.execute(request,
+                                      expecting: [EpisodeModel].self) { [weak self] result in
             switch result {
             case let .success(model):
                 self?.episodes = model
@@ -79,6 +68,22 @@ class CharacterDetailsViewController: UIViewController {
         contentView.activityIndicator.removeFromSuperview()
         contentView.charactersCollectionView.isHidden = false
     }
+
+    private func setupNavBar() {
+        let icon = UIImage(named: "leftPointer")
+        let leftBarItem = UIBarButtonItem(
+            image: icon,
+            style: .plain,
+            target: self,
+            action: #selector(backButtonPressed)
+        )
+        navigationItem.leftBarButtonItem = leftBarItem
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
+    @objc func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -100,7 +105,10 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         DetailsSections.allCases.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard let section = DetailsSections(rawValue: indexPath.section) else {
             return UICollectionViewCell()
         }

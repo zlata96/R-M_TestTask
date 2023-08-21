@@ -16,9 +16,3 @@ struct GetAllCharactersRequest: Codable {
     let info: Info
     let results: [CharacterModel]
 }
-
-// MARK: - GetEpisodesRequest
-
-struct GetEpisodesRequest: Codable {
-    let results: [EpisodeModel]
-}

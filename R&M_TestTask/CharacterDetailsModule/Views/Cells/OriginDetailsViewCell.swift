@@ -6,7 +6,7 @@ import UIKit
 // MARK: - OriginDetailsViewCell
 
 class OriginDetailsViewCell: UICollectionViewCell {
-    lazy var originNameLabel: UILabel = {
+    private lazy var originNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .text1SB
@@ -17,7 +17,7 @@ class OriginDetailsViewCell: UICollectionViewCell {
         return label
     }()
 
-    lazy var originTypeLabel: UILabel = {
+    private lazy var originTypeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .accentTitle
         label.font = .text2M
@@ -28,7 +28,7 @@ class OriginDetailsViewCell: UICollectionViewCell {
         return label
     }()
 
-    let originImageView: UIImageView = {
+    private lazy var originImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .imageBackgrounnd

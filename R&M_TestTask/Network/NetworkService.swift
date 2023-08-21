@@ -1,18 +1,18 @@
-// APIService.swift
+// NetworkService.swift
 // R&M_TestTask. Created by Zlata Guseva.
 
 import Foundation
 
-/// Primary API service object to get Rick and Morty data
-final class APIService {
+/// Primary API service object to get data
+final class NetworkService {
     /// Shared singleton instance
-    static let shared = APIService()
+    static let shared = NetworkService()
 
     /// Privatized constructor
     private init() {}
 
     /// Error types
-    enum APIServiceError: Error {
+    enum NetworkServiceError: Error {
         case failedToCreateRequest
         case failedToGetData
     }
@@ -23,18 +23,18 @@ final class APIService {
     ///   - type: The type of object we expect to get back
     ///   - completion: Callback with data or error
     public func execute<T: Codable>(
-        _ request: APIRequest,
+        _ request: NetworkRequest,
         expecting type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
         guard let urlRequest = self.request(from: request) else {
-            completion(.failure(APIServiceError.failedToCreateRequest))
+            completion(.failure(NetworkServiceError.failedToCreateRequest))
             return
         }
 
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data, error == nil else {
-                completion(.failure(APIServiceError.failedToGetData))
+                completion(.failure(NetworkServiceError.failedToGetData))
                 return
             }
 
@@ -49,7 +49,7 @@ final class APIService {
         task.resume()
     }
 
-    private func request(from apiRequest: APIRequest) -> URLRequest? {
+    private func request(from apiRequest: NetworkRequest) -> URLRequest? {
         guard let url = apiRequest.url else {
             return nil
         }

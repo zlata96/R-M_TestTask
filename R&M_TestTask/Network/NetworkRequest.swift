@@ -1,20 +1,40 @@
-// APIRequest.swift
+// NetworkRequest.swift
 // R&M_TestTask. Created by Zlata Guseva.
 
 import Foundation
 
-// MARK: - APIRequest
+// MARK: - NetworkRequest
 
-final class APIRequest {
+final class NetworkRequest {
     private enum Constants {
         static let baseURL = "https://rickandmortyapi.com/api"
     }
 
-    private let endPoint: APIEndpoint
+    private let endPoint: NetworkEndpoint
     private let pathComponents: [String]
     private let queryParameters: [URLQueryItem]
 
     private var urlString: String {
+        setupURL()
+    }
+
+    var url: URL? {
+        URL(string: urlString)
+    }
+
+    let httpMethod = "GET"
+
+    init(
+        endPoint: NetworkEndpoint,
+        pathComponents: [String] = [],
+        queryParameters: [URLQueryItem] = []
+    ) {
+        self.endPoint = endPoint
+        self.pathComponents = pathComponents
+        self.queryParameters = queryParameters
+    }
+
+    private func setupURL() -> String {
         var string = Constants.baseURL
         string += "/\(endPoint.rawValue)"
         if !pathComponents.isEmpty {
@@ -33,25 +53,8 @@ final class APIRequest {
         }
         return string
     }
-
-    var url: URL? {
-        URL(string: urlString)
-    }
-
-    let httpMethod = "GET"
-
-    /// Constract request
-    init(
-        endPoint: APIEndpoint,
-        pathComponents: [String] = [],
-        queryParameters: [URLQueryItem] = []
-    ) {
-        self.endPoint = endPoint
-        self.pathComponents = pathComponents
-        self.queryParameters = queryParameters
-    }
 }
 
-extension APIRequest {
-    static let listCharactersRequest = APIRequest(endPoint: .character)
+extension NetworkRequest {
+    static let listCharactersRequest = NetworkRequest(endPoint: .character)
 }

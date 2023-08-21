@@ -6,13 +6,15 @@ import UIKit
 // MARK: - CharacterCardViewCell
 
 class CharacterCardViewCell: UICollectionViewCell {
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private let imageManager = ImageManager()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
 
-    lazy var characterNameLabel: UILabel = {
+    private lazy var characterNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .text1SB
@@ -22,7 +24,7 @@ class CharacterCardViewCell: UICollectionViewCell {
         return label
     }()
 
-    let characterImageView: UIImageView = {
+    private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .clear
@@ -85,47 +87,13 @@ class CharacterCardViewCell: UICollectionViewCell {
 extension CharacterCardViewCell {
     func configuration(characterModel: CharacterCardViewCellModel) {
         characterNameLabel.text = characterModel.name
-        characterModel.fetchImage { [weak self] result in
-            switch result {
-            case let .success(data):
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    self?.characterImageView.image = image
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
-                }
-            case let .failure(error):
-                print(String(describing: error))
-            }
+        DispatchQueue.main.async { [weak self] in
+            self?.imageManager.setupImage(
+                imageURL: characterModel.imageURL,
+                imageView: self?.characterImageView ?? UIImageView()
+            )
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.removeFromSuperview()
         }
-    }
-}
-
-// MARK: - CharacterCardViewCellModel
-
-struct CharacterCardViewCellModel {
-    let name: String
-    let imageURL: URL?
-
-    init(name: String, imageURL: URL?) {
-        self.name = name
-        self.imageURL = imageURL
-    }
-
-    public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
-        // TODO: Image manager
-        guard let url = imageURL else {
-            completion(.failure(URLError(.badURL)))
-            return
-        }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data, error == nil else {
-                completion(.failure(error ?? URLError(.badServerResponse)))
-                return
-            }
-            completion(.success(data))
-        }
-        task.resume()
     }
 }

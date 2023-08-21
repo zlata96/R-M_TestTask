@@ -6,8 +6,8 @@ import UIKit
 // MARK: - CharactersViewController
 
 class CharactersViewController: UIViewController {
-    let contentView = CharactersView()
-    var characters = [CharacterModel]()
+    private let contentView = CharactersView()
+    private var characters = [CharacterModel]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,14 +22,14 @@ class CharactersViewController: UIViewController {
         fetchData()
     }
 
-    func setupDelegates() {
+    private func setupDelegates() {
         contentView.charactersCollectionView.delegate = self
         contentView.charactersCollectionView.dataSource = self
     }
 
-    func fetchData() {
-        APIService.shared.execute(APIRequest.listCharactersRequest,
-                                  expecting: GetAllCharactersRequest.self) { [weak self] result in
+    private func fetchData() {
+        NetworkService.shared.execute(NetworkRequest.listCharactersRequest,
+                                      expecting: GetAllCharactersRequest.self) { [weak self] result in
             switch result {
             case let .success(model):
                 print(String(describing: model))
@@ -65,7 +65,10 @@ extension CharactersViewController: UICollectionViewDataSource {
         characters.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: CharacterCardViewCell.self, for: indexPath)
         let character = characters[indexPath.row]
         let viewModel = CharacterCardViewCellModel(name: character.name, imageURL: URL(string: character.image))

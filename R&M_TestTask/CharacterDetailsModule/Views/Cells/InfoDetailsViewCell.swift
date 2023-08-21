@@ -6,25 +6,25 @@ import UIKit
 // MARK: - InfoDetailsViewCell
 
 class InfoDetailsViewCell: UICollectionViewCell {
-    let speciesLabels: TwoLabelsView = {
+    private let speciesLabels: TwoLabelsView = {
         let labels = TwoLabelsView()
         labels.translatesAutoresizingMaskIntoConstraints = false
         return labels
     }()
 
-    let typeLabels: TwoLabelsView = {
+    private let typeLabels: TwoLabelsView = {
         let labels = TwoLabelsView()
         labels.translatesAutoresizingMaskIntoConstraints = false
         return labels
     }()
 
-    let genderLabels: TwoLabelsView = {
+    private let genderLabels: TwoLabelsView = {
         let labels = TwoLabelsView()
         labels.translatesAutoresizingMaskIntoConstraints = false
         return labels
     }()
 
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -68,7 +68,7 @@ class InfoDetailsViewCell: UICollectionViewCell {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
     }
 }

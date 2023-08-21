@@ -19,27 +19,6 @@ struct CharacterModel: Codable {
     let created: String
 }
 
-// MARK: - OriginModel
-
-struct OriginModel: Codable {
-    let name: String
-    let url: String
-}
-
-// MARK: - EpisodeModel
-
-struct EpisodeModel: Codable {
-    let id: Int
-    let name: String
-    let episode: String
-    let airDate: String
-
-    private enum CodingKeys: String, CodingKey {
-        case airDate = "air_date"
-        case id, name, episode
-    }
-}
-
 // MARK: - CharacterGender
 
 enum CharacterGender: String, Codable {

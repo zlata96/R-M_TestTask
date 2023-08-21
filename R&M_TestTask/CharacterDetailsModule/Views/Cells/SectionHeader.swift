@@ -6,7 +6,7 @@ import UIKit
 // MARK: - SectionHeader
 
 class SectionHeader: UICollectionReusableView {
-    private var sectionNameLabel: UILabel = {
+    private lazy var sectionNameLabel: UILabel = {
         let label = UILabel()
         label.font = .text1SB
         label.textColor = .white
