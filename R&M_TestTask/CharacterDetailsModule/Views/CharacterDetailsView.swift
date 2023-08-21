@@ -68,10 +68,10 @@ class CharacterDetailsView: UIView {
 
     private func makeConstraints() {
         NSLayoutConstraint.activate([
-            charactersCollectionView.topAnchor.constraint(equalTo: topAnchor),
+            charactersCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             charactersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             charactersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27),
-            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
 
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -135,7 +135,7 @@ extension CharacterDetailsView {
     }
 
     private func getHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(62))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(78))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,

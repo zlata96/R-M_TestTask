@@ -11,13 +11,12 @@ class CharactersViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isHidden = true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view = contentView
-        title = "Characters"
         setupDelegates()
         fetchData()
     }
@@ -75,5 +74,15 @@ extension CharactersViewController: UICollectionViewDataSource {
         let viewModel = CharacterCardViewCellModel(name: character.name, imageURL: URL(string: character.image))
         cell.configuration(characterModel: viewModel)
         return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        let header = collectionView.viewForSupplementary(withClass: SectionHeader.self, for: indexPath)
+        header.configure(title: "Characters", font: .text1B)
+        return header
     }
 }

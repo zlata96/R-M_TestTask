@@ -8,7 +8,6 @@ import UIKit
 class SectionHeader: UICollectionReusableView {
     private lazy var sectionNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .text1SB
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,7 +48,8 @@ class SectionHeader: UICollectionReusableView {
 }
 
 extension SectionHeader {
-    func configure(title: String) {
+    func configure(title: String, font: UIFont = .text1SB) {
         sectionNameLabel.text = title
+        sectionNameLabel.font = font
     }
 }
