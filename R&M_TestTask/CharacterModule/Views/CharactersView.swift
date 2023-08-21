@@ -20,6 +20,13 @@ class CharactersView: UIView {
         return collectionView
     }()
 
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -38,10 +45,12 @@ class CharactersView: UIView {
 
     private func setupStyle() {
         backgroundColor = .mainBackground
+        activityIndicator.startAnimating()
     }
 
     private func addSubviews() {
         addSubview(charactersCollectionView)
+        addSubview(activityIndicator)
     }
 
     private func makeConstraints() {
@@ -49,7 +58,10 @@ class CharactersView: UIView {
             charactersCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             charactersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             charactersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27),
-            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
+            charactersCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

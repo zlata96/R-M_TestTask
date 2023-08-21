@@ -8,13 +8,6 @@ import UIKit
 class CharacterCardViewCell: UICollectionViewCell {
     private let imageManager = ImageManager()
 
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        return activityIndicator
-    }()
-
     private lazy var characterNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -49,7 +42,6 @@ class CharacterCardViewCell: UICollectionViewCell {
         addSubviews()
         makeConstraints()
         setupStyle()
-        activityIndicator.startAnimating()
     }
 
     private func setupStyle() {
@@ -61,7 +53,6 @@ class CharacterCardViewCell: UICollectionViewCell {
     private func addSubviews() {
         addSubview(characterImageView)
         addSubview(characterNameLabel)
-        addSubview(activityIndicator)
     }
 
     private func makeConstraints() {
@@ -75,10 +66,7 @@ class CharacterCardViewCell: UICollectionViewCell {
             characterNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             characterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            characterNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
+            characterNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }
@@ -93,8 +81,6 @@ extension CharacterCardViewCell {
                 imageURL: characterModel.imageURL,
                 imageView: self?.characterImageView ?? UIImageView()
             )
-            self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.removeFromSuperview()
         }
     }
 }

@@ -36,6 +36,8 @@ class CharactersViewController: UIViewController {
                 self?.characters = model.results
                 DispatchQueue.main.async {
                     self?.contentView.charactersCollectionView.reloadData()
+                    self?.contentView.activityIndicator.stopAnimating()
+                    self?.contentView.activityIndicator.removeFromSuperview()
                 }
             case let .failure(error):
                 print(String(describing: error))
