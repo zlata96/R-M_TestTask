@@ -10,7 +10,10 @@ struct CharacterModel: Codable {
     let name: String
     let gender: CharacterGender
     let origin: OriginModel
-    let imageString: String
+    let status: String
+    let image: String
+    let species: String
+    let type: String
     let episode: [String]
     let url: String
     let created: String
@@ -29,9 +32,12 @@ struct EpisodeModel: Codable {
     let id: Int
     let name: String
     let episode: String
-    let characters: [String]
-    let url: String
-    let created: String
+    let airDate: String
+
+    private enum CodingKeys: String, CodingKey {
+        case airDate = "air_date"
+        case id, name, episode
+    }
 }
 
 // MARK: - CharacterGender

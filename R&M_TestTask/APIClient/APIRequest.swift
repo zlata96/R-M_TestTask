@@ -3,6 +3,8 @@
 
 import Foundation
 
+// MARK: - APIRequest
+
 final class APIRequest {
     private enum Constants {
         static let baseURL = "https://rickandmortyapi.com/api"
@@ -48,4 +50,8 @@ final class APIRequest {
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
+}
+
+extension APIRequest {
+    static let listCharactersRequest = APIRequest(endPoint: .character)
 }

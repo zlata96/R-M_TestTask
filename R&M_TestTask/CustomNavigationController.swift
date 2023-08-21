@@ -6,7 +6,6 @@ import UIKit
 class CustomNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationBar.tintColor = .mainBackground
         navigationBar.prefersLargeTitles = true
         setupStyle()
@@ -15,12 +14,15 @@ class CustomNavigationController: UINavigationController {
     private func setupStyle() {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .mainBackground
-        appearance.titlePositionAdjustment = .init(horizontal: 16, vertical: 0)
-        appearance.shadowColor = .clear
-        appearance.titleTextAttributes = [
-            .font: UIFont.text1B,
+        appearance.largeTitleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
+        appearance.titlePositionAdjustment = .init(horizontal: 16, vertical: 0)
+        appearance.shadowColor = .clear
+//        appearance.titleTextAttributes = [
+//            .font: UIFont.text1B,
+//            .foregroundColor: UIColor.white
+//        ]
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
