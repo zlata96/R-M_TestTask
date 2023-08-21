@@ -10,8 +10,6 @@ class CharactersView: UIView {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cellWithClass: CharacterCardViewCell.self)
-        collectionView.register(viewWithClass: CharacterSectionHeader.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         collectionView.backgroundColor = .mainBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -43,7 +41,7 @@ class CharactersView: UIView {
 
     private func makeConstraints() {
         NSLayoutConstraint.activate([
-            charactersCollectionView.topAnchor.constraint(equalTo: topAnchor),
+            charactersCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             charactersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             charactersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27),
             charactersCollectionView.heightAnchor.constraint(equalTo: heightAnchor)
@@ -69,21 +67,7 @@ extension CharactersView {
         )
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 16
-        let header = getHeader()
-        section.boundarySupplementaryItems = [header]
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
-    }
-
-    private func getHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(60))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        // check
-//        header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        return header
     }
 }
