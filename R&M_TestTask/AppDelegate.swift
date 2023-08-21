@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupRootViewController() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = ViewController()
-        let navigationVC = UINavigationController(rootViewController: viewController)
+        let viewController = CharactersViewController()
+        let navigationVC = CustomNavigationController(rootViewController: viewController)
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
