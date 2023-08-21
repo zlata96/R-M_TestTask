@@ -1,0 +1,6 @@
+--header "{file}\nR&M_TestTask. Created by Zlata Guseva."
+
+--disable unusedArguments, trailingCommas
+--enable markTypes
+
+--swiftversion 5.7
